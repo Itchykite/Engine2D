@@ -70,10 +70,7 @@ void Engine::processEvents()
             isRunning = false;
         }
        
-        else if(e.type == SDL_KEYDOWN)
-        {
-            game->handleEvent(e);
-        }
+        game->handleEvent(e);
     }
 }
 

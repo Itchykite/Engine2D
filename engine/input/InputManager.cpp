@@ -1,49 +1,59 @@
 #include "InputManager.hpp"
 
-std::unordered_map<SDL_Keycode, bool> Input::keyState;
-std::unordered_map<Uint8, bool> Input::mouseButtonState;
+// --- Keyboard
+std::unordered_map<SDL_Scancode, bool> Input::keyHeld;
+
+// --- Mouse
+std::unordered_map<Uint8, bool> Input::mouseButtonHeld;
 int Input::mouseX = 0;
 int Input::mouseY = 0;
 
-void Input::update(const SDL_Event& event) 
+void Input::update(const SDL_Event& event)
 {
     switch (event.type)
     {
         case SDL_KEYDOWN:
-            keyState[event.key.keysym.sym] = true;
+            Input::keyHeld[event.key.keysym.scancode] = true;
             break;
+
         case SDL_KEYUP:
-            keyState[event.key.keysym.sym] = false;
+            Input::keyHeld[event.key.keysym.scancode] = false;
             break;
+
         case SDL_MOUSEBUTTONDOWN:
-            mouseButtonState[event.button.button] = true;
+            Input::mouseButtonHeld[event.button.button] = true;
             break;
+
         case SDL_MOUSEBUTTONUP:
-            mouseButtonState[event.button.button] = false;
+            Input::mouseButtonHeld[event.button.button] = false;
             break;
+
         case SDL_MOUSEMOTION:
-            mouseX = event.motion.x;
-            mouseY = event.motion.y;
+            Input::mouseX = event.motion.x;
+            Input::mouseY = event.motion.y;
+            break;
+
+        default:
             break;
     }
 }
 
-bool Input::isKeyPressed(SDL_Keycode key) 
+bool Input::isKeyHeld(SDL_Scancode key)
 {
-    return keyState[key];
+    return Input::keyHeld[key];
 }
 
-bool Input::isMouseButtonPressed(Uint8 button) 
+bool Input::isMouseButtonHeld(Uint8 button)
 {
-    return mouseButtonState[button];
+    return Input::mouseButtonHeld[button];
 }
 
-int Input::getMouseX() 
+int Input::getMouseX()
 {
-    return mouseX;
+    return Input::mouseX;
 }
 
-int Input::getMouseY() 
+int Input::getMouseY()
 {
-    return mouseY;
+    return Input::mouseY;
 }

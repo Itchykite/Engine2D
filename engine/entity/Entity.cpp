@@ -8,10 +8,7 @@ Entity::Entity(int x, int y, int width, int height)
 
 void Entity::render(Renderer* renderer)
 {
-    if (texture != nullptr)
-    {
-        //renderer->renderTexture(texture, x, y, width, height);
-    }
+    
 }
 
 int Entity::getX() const { return x; }

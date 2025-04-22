@@ -1,4 +1,5 @@
 #include "Player.hpp"
+#include "../../input/InputManager.hpp"
 
 Player::Player(int x, int y, int width, int height)
     : Entity(x, y, width, height)
@@ -8,25 +9,26 @@ Player::Player(int x, int y, int width, int height)
 
 void Player::update()
 {
-    if(Input::isKeyPressed(SDLK_LEFT))
+    if (Input::isKeyHeld(SDL_SCANCODE_LEFT))
     {
-        x -= 5;
+        x -= speed;
     }
-    if(Input::isKeyPressed(SDLK_RIGHT))
+    if (Input::isKeyHeld(SDL_SCANCODE_RIGHT))
     {
-        x += 5;
+        x += speed;
     }
-    if(Input::isKeyPressed(SDLK_UP))
+    if (Input::isKeyHeld(SDL_SCANCODE_UP))
     {
-        y -= 5;
+        y -= speed;
     }
-    if(Input::isKeyPressed(SDLK_DOWN))
+    if (Input::isKeyHeld(SDL_SCANCODE_DOWN))
     {
-        y += 5;
+        y += speed;
     }
 }
 
 void Player::render(Renderer* renderer)
 {
-    Entity::render(renderer);
+    renderer->drawRect(x, y, width, height); // Draw the player as a rectangle
 }
+

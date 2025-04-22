@@ -1,20 +1,23 @@
-#pragma once 
+#pragma once
 
 #include <SDL2/SDL.h>
 #include <unordered_map>
 
-class Input 
+class Input
 {
 public:
+    // --- Keyboard
+    static std::unordered_map<SDL_Scancode, bool> keyHeld;
+
+    // --- Mouse
+    static std::unordered_map<Uint8, bool> mouseButtonHeld;
+    static int mouseX;
+    static int mouseY;
+
     static void update(const SDL_Event& event);
 
-    static bool isKeyPressed(SDL_Keycode key);
-    static bool isMouseButtonPressed(Uint8 button);
+    static bool isKeyHeld(SDL_Scancode key);
+    static bool isMouseButtonHeld(Uint8 button);
     static int getMouseX();
     static int getMouseY();
-
-private:
-    static std::unordered_map<SDL_Keycode, bool> keyState;
-    static std::unordered_map<Uint8, bool> mouseButtonState;
-    static int mouseX, mouseY;
 };
