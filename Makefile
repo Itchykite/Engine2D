@@ -1,7 +1,7 @@
 CXX = clang++
 CXXFLAGS = -std=c++20 -Wall -Wextra `sdl2-config --cflags`
 LDFLAGS = `sdl2-config --libs` -lSDL2_ttf
-SRC = src/main.cpp game/Game.cpp engine/core/Engine.cpp engine/input/InputManager.cpp engine/renderer/Renderer.cpp engine/fps/Fps.cpp
+SRC = src/main.cpp game/Game.cpp engine/core/Engine.cpp engine/input/InputManager.cpp engine/renderer/Renderer.cpp engine/fps/Fps.cpp engine/entity/Entity.cpp engine/entity/player/Player.cpp engine/entity/npc/Npc.cpp engine/entity/enemy/Enemy.cpp
 OBJ = $(SRC:.cpp=.o)
 TARGET = mygame
 
