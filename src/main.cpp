@@ -1,16 +1,18 @@
-#include "engine/core/Engine.hpp"
-#include "game/Game.hpp"
+#include "../engine/core/Engine.hpp"
+#include "../game/GameFactory.hpp"
 
 int main()
 {
     Engine engine;
-    if(!engine.init("Game"), 1280, 720)
+    Game* game = createGameInstance();
+    game->setEngine(&engine);
+
+    if(!engine.init("Game", 1280, 720))
     {
         return 1;
     }
 
-    Game game;
-    engine.setGame(&game);
+    engine.setGame(game);
     engine.run();
     engine.shutdown();
 
