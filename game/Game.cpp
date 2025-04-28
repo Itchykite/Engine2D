@@ -1,23 +1,35 @@
 #include "Game.hpp"
 #include "../engine/input/InputManager.hpp"
 #include "../engine/entity/player/Player.hpp"
+#include "../engine/entity/enemy/Enemy.hpp"
+#include "../engine/entity/movementStrategy/simpleFollowStrategy/SimpleFollowStrategy.hpp"
 
 #include <string>
+#include <iostream>
 
 class MyGame : public Game
 {
 private:
+    SimpleFollowStrategy* followStrategy = nullptr; 
     Player* player = nullptr;
+    Enemy* enemy = nullptr;
+    
 
 public:
     MyGame()
     {
+        followStrategy = new SimpleFollowStrategy();
+
         player = new Player(100, 100, 50, 50);
+        enemy = new Enemy(200, 200, 50, 50, followStrategy);
+
     }
 
     ~MyGame()
     {
         delete player;
+        delete enemy;
+        delete followStrategy;              
     }
 
     void handleEvent(const SDL_Event& event) override
@@ -34,8 +46,9 @@ public:
     void update() override
     {
         fpsInstance.calc_fps();
-
+        
         player->update();
+        enemy->update(player);
     }
 
     void render(Renderer* renderer) override
@@ -47,6 +60,7 @@ public:
 
         renderer->setDrawColor(0, 0, 0, 255);
         player->render(renderer);
+        enemy->render(renderer);
     }
 };
 

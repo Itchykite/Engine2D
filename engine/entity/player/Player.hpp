@@ -18,7 +18,7 @@ public:
 
 
 private:
-    int speed = 5;
+    int speed;
 
     bool movingLeft = false;
     bool movingRight = false;

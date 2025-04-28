@@ -17,6 +17,8 @@ public:
     int getY() const;
     int getWidth() const;
     int getHeight() const;
+    int setX(int newX);
+    int setY(int newY);
 
     void setPosition(int newX, int newY);
 

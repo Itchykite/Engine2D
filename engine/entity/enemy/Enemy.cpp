@@ -1,22 +1,36 @@
 #include "Enemy.hpp"
 
-Enemy::Enemy(int x, int y, int width, int heigth)
-    :Entity(x, y, width, heigth)
+Enemy::Enemy(int x, int y, int width, int heigth, MovementStrategy* strategy)
+    :Entity(x, y, width, heigth), movementStrategy(strategy) 
 {
     texture = nullptr;
+    speed = 2; // Set a default speed for the enemy
 }
 
 void Enemy::update()
 {
-    x -= 2;
 
-    if (x < 0)
+}
+
+void Enemy::update(Player* player)
+{
+    if (movementStrategy) 
     {
-        x = 800;
+        movementStrategy->move(this, player);
     }
 }
 
 void Enemy::render(Renderer* renderer)
 {
-    Enemy::render(renderer);
+    renderer->drawRect(x, y, width, height); // Draw the enemy as a rectangle
+}
+
+void Enemy::setMovementStrategy(MovementStrategy* strategy)
+{
+    movementStrategy = strategy;
+}
+
+int Enemy::getSpeed()
+{
+    return speed;
 }

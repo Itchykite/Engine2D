@@ -4,7 +4,8 @@
 Player::Player(int x, int y, int width, int height)
     : Entity(x, y, width, height)
 {
-   texture = nullptr; 
+    texture = nullptr; 
+    speed = 5; // Set a default speed for the player
 }
 
 void Player::update()
