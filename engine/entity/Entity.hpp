@@ -12,6 +12,7 @@ public:
 
     virtual void update() = 0; // Pure virtual function for updating the entity
     virtual void render(Renderer* renderer);
+    virtual void applyGravity(); // Gravity logic here
 
     int getX() const;
     int getY() const;
@@ -27,4 +28,9 @@ protected:
     int x, y;
     int width, height;
     SDL_Texture* texture = nullptr;
+
+    int velocityY = 0;
+    int gravity = 1;
+    bool isOnGround = false;
+
 };

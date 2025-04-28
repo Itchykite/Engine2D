@@ -9,7 +9,20 @@ Enemy::Enemy(int x, int y, int width, int heigth, MovementStrategy* strategy)
 
 void Enemy::update()
 {
+}
 
+void Enemy::applyGravity()
+{
+    if (!isOnGround)
+    {
+        velocityY += gravity;  // Apply gravity when not on the ground
+    }
+    else
+    {
+        velocityY = 0;  // Reset velocity when on the ground
+    }
+
+    y += velocityY;  // Update the player's position
 }
 
 void Enemy::update(Player* player)
@@ -18,6 +31,8 @@ void Enemy::update(Player* player)
     {
         movementStrategy->move(this, player);
     }
+
+    applyGravity();
 }
 
 void Enemy::render(Renderer* renderer)

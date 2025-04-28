@@ -11,6 +11,7 @@ public:
     void update() override;
     void update(Player* player);
     void render(Renderer* renderer) override;
+    void applyGravity() override;
 
     void setMovementStrategy(MovementStrategy* strategy);
 

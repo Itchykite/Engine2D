@@ -33,6 +33,8 @@ public:
         delete player;
         delete enemy;
         delete followStrategy;              
+        
+        platforms.clear();
     }
 
     void initPlatforms()
@@ -62,7 +64,7 @@ public:
         fpsInstance.calc_fps();
         
         player->update();
-        enemy->update(player);
+        //enemy->update(player);
     }
 
     void render(Renderer* renderer) override
@@ -76,14 +78,14 @@ public:
 
             SDL_Rect platformRect = platform.rect;
             player->checkCollisionWObj(platformRect);
-            enemy->checkCollisionWObj(platformRect);
+            //enemy->checkCollisionWObj(platformRect);
         }
 
         renderer->renderText("Fps: " + std::to_string(fpsInstance.get_fps()), 10, 10, engine->font, {0, 0, 0, 255});
 
         renderer->setDrawColor(0, 0, 0, 255);
         player->render(renderer);
-        enemy->render(renderer);
+        //enemy->render(renderer);
     }
 };
 

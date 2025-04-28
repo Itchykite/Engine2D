@@ -6,6 +6,30 @@ Player::Player(int x, int y, int width, int height)
 {
     texture = nullptr; 
     speed = 5; // Set a default speed for the player
+    jumpForce = -15; // Set a default jump force
+}
+
+void Player::applyGravity()
+{
+    if (!isOnGround)
+    {
+        velocityY += gravity;  // Apply gravity when not on the ground
+    }
+    else
+    {
+        velocityY = 0;  // Reset velocity when on the ground
+    }
+
+    y += velocityY;  // Update the player's position
+}
+
+void Player::jump()
+{
+    if (isOnGround)
+    {
+        velocityY = jumpForce; // Set the jump velocity
+        isOnGround = false; // Player is now in the air
+    }
 }
 
 void Player::update()
@@ -13,19 +37,21 @@ void Player::update()
     if (Input::isKeyHeld(SDL_SCANCODE_LEFT))
     {
         x -= speed;
+        SDL_Log("LEFT");
     }
     if (Input::isKeyHeld(SDL_SCANCODE_RIGHT))
     {
         x += speed;
+        SDL_Log("RIGHT");
     }
-    if (Input::isKeyHeld(SDL_SCANCODE_UP))
+    
+    if (Input::isKeyHeld(SDL_SCANCODE_SPACE) && isOnGround)
     {
-        y -= speed;
+        jump();
+        SDL_Log("JUMP");
     }
-    if (Input::isKeyHeld(SDL_SCANCODE_DOWN))
-    {
-        y += speed;
-    }
+    
+    applyGravity();
 }
 
 void Player::render(Renderer* renderer)
