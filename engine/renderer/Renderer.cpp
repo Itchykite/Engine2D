@@ -31,6 +31,15 @@ void Renderer::drawRect(int x, int y, int width, int height)
     SDL_RenderDrawRect(renderer, &rect); // Draw the rectangle on the renderer
 }
 
+void Renderer::drawCollisonRect(int x, int y, int width, int height)
+{
+    SDL_Rect rect = { x, y, width, height }; // Define the rectangle to draw
+    SDL_RenderDrawRect(renderer, &rect); // Draw the rectangle on the renderer
+
+    SDL_RenderDrawLine(renderer, x, y, x + width, y + height); // Line from left top to right bottom
+    SDL_RenderDrawLine(renderer, x + width, y, x, y + height); // Line from right top to left bottom
+}
+
 void Renderer::renderText(const std::string& text, int x, int y, TTF_Font* font, SDL_Color color)
 {
     SDL_Surface* surface = TTF_RenderText_Solid(font, text.c_str(), color); // Render text to a surface

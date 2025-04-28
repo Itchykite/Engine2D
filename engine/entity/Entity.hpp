@@ -21,6 +21,7 @@ public:
     int setY(int newY);
 
     void setPosition(int newX, int newY);
+    void checkCollisionWObj(const SDL_Rect& object);
 
 protected:
     int x, y;
