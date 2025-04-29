@@ -27,13 +27,11 @@ void Player::update(float deltaTime)
     if (Input::isKeyHeld(SDL_SCANCODE_LEFT))
     {
         x -= speed * deltaTime; // Move left    
-        SDL_Log("LEFT dx: %f", speed * deltaTime);
     }
 
     if (Input::isKeyHeld(SDL_SCANCODE_RIGHT))
     {
-        x += speed * deltaTime; // Move right
-        SDL_Log("RIGHT dx: %f", speed * deltaTime);
+        x += speed * deltaTime * 1.75f; // Move right
     }
     
     if (Input::isKeyHeld(SDL_SCANCODE_SPACE))
@@ -45,8 +43,6 @@ void Player::update(float deltaTime)
     } 
 
     applyGravity(deltaTime);
-
-    SDL_Log("speed: %d, deltaTime: %f", speed, deltaTime);
 }
 
 void Player::render(Renderer* renderer)

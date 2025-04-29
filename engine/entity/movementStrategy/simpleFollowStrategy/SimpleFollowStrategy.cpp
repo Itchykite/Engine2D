@@ -2,7 +2,7 @@
 #include "../../enemy/Enemy.hpp"
 #include "../../player/Player.hpp"
 
-void SimpleFollowStrategy::move(Enemy* enemy, Player* player, flaot deltaTime)
+void SimpleFollowStrategy::move(Enemy* enemy, Player* player, float deltaTime)
 {
     if (enemy == nullptr || player == nullptr)
     {
@@ -11,7 +11,7 @@ void SimpleFollowStrategy::move(Enemy* enemy, Player* player, flaot deltaTime)
 
     if (player->getX() > enemy->getX())
     {
-        enemy->setX(enemy->getX() + enemy->getSpeed() * deltaTime);
+        enemy->setX(enemy->getX() + enemy->getSpeed() * deltaTime * 1.75f);
     }
     else if (player->getX() < enemy->getX())
     {
