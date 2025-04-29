@@ -52,10 +52,16 @@ void Engine::setGame(Game* g)
 
 void Engine::run()
 {
+    Uint32 lastTime = SDL_GetTicks();
+
     while(isRunning)
     {
+        Uint32 currentTime = SDL_GetTicks();
+        float deltaTime = (currentTime - lastTime) / 1000.0f; // sekundy
+        lastTime = currentTime;
+
         processEvents();
-        update();
+        update(deltaTime);
         render();
     }
 }
@@ -74,11 +80,11 @@ void Engine::processEvents()
     }
 }
 
-void Engine::update()
+void Engine::update(float deltaTime)
 {
     if(game)
     {
-        game->update();
+        game->update(deltaTime);
     }
 }
 

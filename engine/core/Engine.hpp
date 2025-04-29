@@ -25,6 +25,6 @@ private:
     Game* game = nullptr;
 
     void processEvents();
-    void update();
+    void update(float deltaTime);
     void render();
 };

@@ -6,7 +6,7 @@ Npc::Npc(int x, int y, int width, int height)
     texture = nullptr;
 }
 
-void Npc::update()
+void Npc::update(float deltaTime)
 {
 
 }

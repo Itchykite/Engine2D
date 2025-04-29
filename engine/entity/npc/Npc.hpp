@@ -7,6 +7,6 @@ class Npc : public Entity
 public:
     Npc(int x, int y, int width, int height);
 
-    void update() override;
+    void update(float deltaTime) override;
     void render(Renderer* renderer) override;
 };

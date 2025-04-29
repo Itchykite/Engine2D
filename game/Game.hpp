@@ -21,6 +21,6 @@ public:
 
     virtual ~Game() = default;
     virtual void handleEvent(const SDL_Event& event) = 0;
-    virtual void update() = 0;
+    virtual void update(float deltaTime) = 0;
     virtual void render(Renderer* renderer) = 0;
 };

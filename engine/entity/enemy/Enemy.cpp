@@ -4,35 +4,28 @@ Enemy::Enemy(int x, int y, int width, int heigth, MovementStrategy* strategy)
     :Entity(x, y, width, heigth), movementStrategy(strategy) 
 {
     texture = nullptr;
-    speed = 2; // Set a default speed for the enemy
+    speed = 100; // Set a default speed for the enemy
 }
 
-void Enemy::update()
+void Enemy::update(float deltaTime)
 {
 }
 
-void Enemy::applyGravity()
+void Enemy::applyGravity(float deltaTime)
 {
-    if (!isOnGround)
-    {
-        velocityY += gravity;  // Apply gravity when not on the ground
-    }
-    else
-    {
-        velocityY = 0;  // Reset velocity when on the ground
-    }
-
-    y += velocityY;  // Update the player's position
+    velocityY += 1000 * deltaTime; // grawitacja
+    y += velocityY * deltaTime;
+    isOnGround = false; // zakładamy, że spadamy, dopóki kolizja tego nie zmieni
 }
 
-void Enemy::update(Player* player)
+void Enemy::update(Player* player, float deltaTime)
 {
     if (movementStrategy) 
     {
         movementStrategy->move(this, player);
     }
 
-    applyGravity();
+    applyGravity(deltaTime);
 }
 
 void Enemy::render(Renderer* renderer)

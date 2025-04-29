@@ -8,10 +8,10 @@ class Enemy : public Entity
 public:
     Enemy(int x, int y, int width, int height, MovementStrategy* strategy);
 
-    void update() override;
-    void update(Player* player);
+    void update(float deltaTime) override;
+    void update(Player* player, float deltaTime);
     void render(Renderer* renderer) override;
-    void applyGravity() override;
+    void applyGravity(float deltaTime) override;
 
     void setMovementStrategy(MovementStrategy* strategy);
 

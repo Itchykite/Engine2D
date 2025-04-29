@@ -5,5 +5,5 @@
 class SimpleFollowStrategy : public MovementStrategy
 {
 public:
-    void move(Enemy* enemy, Player* player) override;
+    void move(Enemy* enemy, Player* player, float deltaTime) override;
 };

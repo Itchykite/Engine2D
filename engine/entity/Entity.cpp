@@ -20,9 +20,11 @@ int Entity::setY(int newY) { y = newY; return y; }
 
 void Entity::setPosition(int newX, int newY) { x = newX; y = newY; }
 
-void Entity::applyGravity()
+void Entity::applyGravity(float deltaTime)
 {
-
+    velocityY += 1000 * deltaTime; // grawitacja
+    y += velocityY * deltaTime;
+    isOnGround = false; // zakładamy, że spadamy, dopóki kolizja tego nie zmieni
 }
 
 void Entity::checkCollisionWObj(const SDL_Rect& object)
@@ -33,17 +35,9 @@ void Entity::checkCollisionWObj(const SDL_Rect& object)
     {
         if (velocityY >= 0 && (y + height - velocityY) <= object.y)
         {
-            y = object.y - height;
-            isOnGround = true;
-            velocityY = 0; // Resetuj prędkość po lądowaniu
+            y = object.y - height; // Adjust position to be on top of the object
+            isOnGround = true; // Player is on the ground
+            velocityY = 0; // Reset vertical velocity
         }
-        else
-        {
-            isOnGround = false;
-        }
-    }
-    else
-    {
-        isOnGround = false;
     }
 }

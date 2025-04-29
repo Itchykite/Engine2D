@@ -5,53 +5,48 @@ Player::Player(int x, int y, int width, int height)
     : Entity(x, y, width, height)
 {
     texture = nullptr; 
-    speed = 5; // Set a default speed for the player
-    jumpForce = -15; // Set a default jump force
+    speed = 200; // Set a default speed for the player
+    jumpForce = -500; // Set a default jump force
 }
 
-void Player::applyGravity()
+void Player::applyGravity(float deltaTime)
 {
-    if (!isOnGround)
-    {
-        velocityY += gravity;  // Apply gravity when not on the ground
-    }
-    else
-    {
-        velocityY = 0;  // Reset velocity when on the ground
-    }
-
-    y += velocityY;  // Update the player's position
+    velocityY += 1000 * deltaTime; // grawitacja
+    y += velocityY * deltaTime;
+    isOnGround = false; // zakładamy, że spadamy, dopóki kolizja tego nie zmieni
 }
 
 void Player::jump()
 {
-    if (isOnGround)
-    {
-        velocityY = jumpForce; // Set the jump velocity
-        isOnGround = false; // Player is now in the air
-    }
+    velocityY = jumpForce; // Set the jump velocity
+    isOnGround = false; // Player is now in the air
 }
 
-void Player::update()
+void Player::update(float deltaTime)
 {
     if (Input::isKeyHeld(SDL_SCANCODE_LEFT))
     {
-        x -= speed;
-        SDL_Log("LEFT");
+        x -= speed * deltaTime; // Move left    
+        SDL_Log("LEFT dx: %f", speed * deltaTime);
     }
+
     if (Input::isKeyHeld(SDL_SCANCODE_RIGHT))
     {
-        x += speed;
-        SDL_Log("RIGHT");
+        x += speed * deltaTime; // Move right
+        SDL_Log("RIGHT dx: %f", speed * deltaTime);
     }
     
-    if (Input::isKeyHeld(SDL_SCANCODE_SPACE) && isOnGround)
+    if (Input::isKeyHeld(SDL_SCANCODE_SPACE))
     {
-        jump();
-        SDL_Log("JUMP");
-    }
-    
-    applyGravity();
+        if (isOnGround) // Check if the player is on the ground before jumping
+        {
+            jump(); 
+        }
+    } 
+
+    applyGravity(deltaTime);
+
+    SDL_Log("speed: %d, deltaTime: %f", speed, deltaTime);
 }
 
 void Player::render(Renderer* renderer)
