@@ -9,6 +9,9 @@
 #include <vector>
 #include <iostream>
 
+const int SCREEN_WIDTH = 1280;
+const int SCREEN_HEIGHT = 720;
+
 class MyGame : public Game
 {
 private:
@@ -25,7 +28,7 @@ public:
 
         player = new Player(100, 100, 50, 50);
         enemy = new Enemy(200, 200, 50, 50, followStrategy);
-    
+
         initPlatforms(); 
     }
 
@@ -66,7 +69,16 @@ public:
         
         player->update(deltaTime);
         enemy->update(player, deltaTime);
-    }
+
+        if (player->getY() > SCREEN_HEIGHT)
+        {
+            player->intoAbyss();
+        }
+        if (enemy->getY() > SCREEN_HEIGHT)
+        {
+            enemy->intoAbyss();
+        }
+    }   
 
     void render(Renderer* renderer) override
     {

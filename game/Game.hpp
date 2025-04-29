@@ -5,6 +5,9 @@
 
 #include <SDL2/SDL.h>
 
+extern const int SCREEN_WIDTH;
+extern const int SCREEN_HEIGHT;
+
 class Game
 {
 protected:
@@ -23,4 +26,5 @@ public:
     virtual void handleEvent(const SDL_Event& event) = 0;
     virtual void update(float deltaTime) = 0;
     virtual void render(Renderer* renderer) = 0;
+
 };

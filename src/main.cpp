@@ -7,7 +7,7 @@ int main()
     Game* game = createGameInstance();
     game->setEngine(&engine);
 
-    if(!engine.init("Game", 1280, 720))
+    if(!engine.init("Game", SCREEN_WIDTH, SCREEN_HEIGHT))
     {
         return 1;
     }

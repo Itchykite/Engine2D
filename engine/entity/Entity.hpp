@@ -24,6 +24,7 @@ public:
 
     void setPosition(int newX, int newY);
     void checkCollisionWObj(const SDL_Rect& object);
+    void intoAbyss() { y = 0;}
 
 protected:
     int x, y;

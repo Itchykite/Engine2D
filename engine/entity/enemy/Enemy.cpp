@@ -22,7 +22,7 @@ void Enemy::update(Player* player, float deltaTime)
 {
     if (movementStrategy) 
     {
-        movementStrategy->move(this, player);
+        movementStrategy->move(this, player, deltaTime);
     }
 
     applyGravity(deltaTime);
