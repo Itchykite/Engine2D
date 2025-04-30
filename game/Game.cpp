@@ -1,8 +1,9 @@
 #include "Game.hpp"
 #include "../engine/input/InputManager.hpp"
 #include "../engine/entity/player/Player.hpp"
+#include "../engine/entity/player/playerMovement/simplePlayerMovement/SimplePlayerMovement.hpp"
 #include "../engine/entity/enemy/Enemy.hpp"
-#include "../engine/entity/movementStrategy/simpleFollowStrategy/SimpleFollowStrategy.hpp"
+#include "../engine/entity/enemy/movementStrategy/simpleFollowStrategy/SimpleFollowStrategy.hpp"
 #include "../engine/renderer/platform/Platform.hpp"
 
 #include <string>
@@ -15,7 +16,8 @@ const int SCREEN_HEIGHT = 720;
 class MyGame : public Game
 {
 private:
-    SimpleFollowStrategy* followStrategy = nullptr; 
+    SimpleFollowStrategy* followStrategy = nullptr;
+    SimplePlayerMovement* playerMovement = nullptr;
     Player* player = nullptr;
     Enemy* enemy = nullptr;
     
@@ -25,8 +27,9 @@ public:
     MyGame()
     {
         followStrategy = new SimpleFollowStrategy();
+        playerMovement = new SimplePlayerMovement();
 
-        player = new Player(100, 100, 50, 50);
+        player = new Player(100, 100, 50, 50, playerMovement);
         enemy = new Enemy(200, 200, 50, 50, followStrategy);
 
         initPlatforms(); 

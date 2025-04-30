@@ -1,12 +1,17 @@
 #include "Player.hpp"
 #include "../../input/InputManager.hpp"
 
-Player::Player(int x, int y, int width, int height)
-    : Entity(x, y, width, height)
+Player::Player(int x, int y, int width, int height, PlayerMovement* movement)
+    : Entity(x, y, width, height), playerMovement(movement)
 {
     texture = nullptr; 
     speed = 200; // Set a default speed for the player
     jumpForce = -500; // Set a default jump force
+}
+
+void Player::setPlayerMovement(PlayerMovement* movement)
+{
+    playerMovement = movement;
 }
 
 void Player::applyGravity(float deltaTime)
@@ -24,23 +29,10 @@ void Player::jump()
 
 void Player::update(float deltaTime)
 {
-    if (Input::isKeyHeld(SDL_SCANCODE_LEFT))
+    if (playerMovement) 
     {
-        x -= speed * deltaTime; // Move left    
+        playerMovement->move(this, deltaTime);
     }
-
-    if (Input::isKeyHeld(SDL_SCANCODE_RIGHT))
-    {
-        x += speed * deltaTime * 1.75f; // Move right
-    }
-    
-    if (Input::isKeyHeld(SDL_SCANCODE_SPACE))
-    {
-        if (isOnGround) // Check if the player is on the ground before jumping
-        {
-            jump(); 
-        }
-    } 
 
     applyGravity(deltaTime);
 }

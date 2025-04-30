@@ -1,6 +1,6 @@
 #include "SimpleFollowStrategy.hpp"
-#include "../../enemy/Enemy.hpp"
-#include "../../player/Player.hpp"
+#include "../../Enemy.hpp"
+#include "../../../player/Player.hpp"
 
 void SimpleFollowStrategy::move(Enemy* enemy, Player* player, float deltaTime)
 {
@@ -11,14 +11,13 @@ void SimpleFollowStrategy::move(Enemy* enemy, Player* player, float deltaTime)
 
     if (player->getX() > enemy->getX())
     {
-        enemy->setX(enemy->getX() + enemy->getSpeed() * deltaTime * 1.75f);
+        enemy->setX(enemy->getX() + enemy->getSpeed() * deltaTime * 2.0f);
     }
     else if (player->getX() < enemy->getX())
     {
         enemy->setX(enemy->getX() - enemy->getSpeed() * deltaTime);
     }
 
-    // Ruch w osi Y
     if (player->getY() > enemy->getY())
     {
         enemy->setY(enemy->getY() + enemy->getSpeed() * deltaTime);

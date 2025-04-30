@@ -21,6 +21,7 @@ public:
     int setX(int newX);
     int setY(int newY);
     int getVelocityY() const { return velocityY; }
+    int getIsOnGround() const { return isOnGround; }
 
     void setPosition(int newX, int newY);
     void checkCollisionWObj(const SDL_Rect& object);

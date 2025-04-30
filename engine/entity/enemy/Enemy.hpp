@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../Entity.hpp"
-#include "../movementStrategy/MovementStrategy.hpp"
+#include "movementStrategy/MovementStrategy.hpp"
 
 class Enemy : public Entity 
 {
