@@ -20,7 +20,8 @@ private:
     SimplePlayerMovement* playerMovement = nullptr;
     Player* player = nullptr;
     Enemy* enemy = nullptr;
-    
+    Camera* camera = nullptr; // Camera instance
+
     std::vector<Platform> platforms; // Vector to hold platforms
 
 public:
@@ -28,6 +29,7 @@ public:
     {
         followStrategy = new SimpleFollowStrategy();
         playerMovement = new SimplePlayerMovement();
+        camera = new Camera(SCREEN_WIDTH, SCREEN_HEIGHT); // Initialize camera with screen dimensions
 
         player = new Player(100, 100, 50, 50, playerMovement);
         enemy = new Enemy(200, 200, 50, 50, followStrategy);
@@ -40,7 +42,8 @@ public:
         delete player;
         delete enemy;
         delete followStrategy;              
-        
+        delete camera;
+
         platforms.clear();
     }
 
@@ -48,6 +51,7 @@ public:
     {
         platforms.push_back(Platform(50, 300, 200, 20)); 
         platforms.push_back(Platform(300, 400, 200, 20));
+        platforms.push_back(Platform(350, 500, 200, 20));
         platforms.push_back(Platform(550, 500, 200, 20));
         platforms.push_back(Platform(800, 600, 200, 20));
         platforms.push_back(Platform(1050, 700, 200, 20));
@@ -87,6 +91,9 @@ public:
     {
         renderer->setDrawColor(255, 255, 255, 255);
         renderer->clearScreen();
+
+        camera->follow(player->getX(), player->getY() - player->getHeight() / 2); // Camera follows player
+        renderer->setCamera(camera);
 
         for (Platform& platform : platforms)
         {

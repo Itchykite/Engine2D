@@ -10,6 +10,11 @@ Renderer::~Renderer()
     // Destructor logic if needed
 }
 
+void Renderer::setCamera(Camera* cam)
+{
+    camera = cam; // Set the camera for the renderer
+}
+
 void Renderer::clearScreen()
 {
     SDL_RenderClear(renderer); // Clear the screen with the current draw color
@@ -27,17 +32,26 @@ void Renderer::setDrawColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 
 void Renderer::drawRect(int x, int y, int width, int height)
 {
-    SDL_Rect rect = { x, y, width, height }; // Define the rectangle to draw
+    SDL_Rect rect = 
+    {
+            camera ? x - static_cast<int>(camera->x) : x,
+            camera ? y - static_cast<int>(camera->y) : y, 
+            width, 
+            height 
+    }; // Define the rectangle to draw
     SDL_RenderDrawRect(renderer, &rect); // Draw the rectangle on the renderer
 }
 
 void Renderer::drawCollisonRect(int x, int y, int width, int height)
 {
-    SDL_Rect rect = { x, y, width, height }; // Define the rectangle to draw
+    int drawX = camera ? x - static_cast<int>(camera->x) : x; // Adjust x position based on camera
+    int drawY = camera ? y - static_cast<int>(camera->y) : y; // Adjust y position based on camera
+
+    SDL_Rect rect = { drawX, drawY, width, height }; // Define the rectangle to draw
     SDL_RenderDrawRect(renderer, &rect); // Draw the rectangle on the renderer
 
-    SDL_RenderDrawLine(renderer, x, y, x + width, y + height); // Line from left top to right bottom
-    SDL_RenderDrawLine(renderer, x + width, y, x, y + height); // Line from right top to left bottom
+    SDL_RenderDrawLine(renderer, drawX, drawY, drawX + width, drawY + height); // Line from left top to right bottom
+    SDL_RenderDrawLine(renderer, drawX + width, drawY, drawX, drawY + height); // Line from right top to left bottom
 }
 
 void Renderer::renderText(const std::string& text, int x, int y, TTF_Font* font, SDL_Color color)

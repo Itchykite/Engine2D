@@ -3,12 +3,15 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <string>
+#include "camera/Camera.hpp"
 
 class Renderer
 {
 public:
     Renderer(SDL_Renderer* sdlRenderer);
     ~Renderer();
+
+    void setCamera(Camera* cam);
 
     void clearScreen();
     void presentScreen();
@@ -19,5 +22,6 @@ public:
 
 private:
     SDL_Renderer* renderer;
+    Camera* camera = nullptr;
 };
 
