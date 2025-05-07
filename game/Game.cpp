@@ -12,6 +12,9 @@
 
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 720;
+const int GROUND_LEVEL = 600;
+const int WORLD_WIDTH = 5000;
+const int WORLD_HEIGHT = 2000;
 
 class MyGame : public Game
 {
@@ -49,14 +52,11 @@ public:
 
     void initPlatforms()
     {
+        platforms.push_back(Platform(0, GROUND_LEVEL, WORLD_WIDTH, 20)); // Ground platform
         platforms.push_back(Platform(50, 300, 200, 20)); 
         platforms.push_back(Platform(300, 400, 200, 20));
         platforms.push_back(Platform(350, 500, 200, 20));
         platforms.push_back(Platform(550, 500, 200, 20));
-        platforms.push_back(Platform(800, 600, 200, 20));
-        platforms.push_back(Platform(1050, 700, 200, 20));
-        platforms.push_back(Platform(1300, 800, 200, 20));
-        platforms.push_back(Platform(1550, 900, 200, 20));
     }
 
     void handleEvent(const SDL_Event& event) override
@@ -77,13 +77,29 @@ public:
         player->update(deltaTime);
         enemy->update(player, deltaTime);
 
-        if (player->getY() > SCREEN_HEIGHT)
+        if (player->getY() > GROUND_LEVEL)
         {
             player->intoAbyss();
         }
-        if (enemy->getY() > SCREEN_HEIGHT)
+        if (enemy->getY() > GROUND_LEVEL)
         {
             enemy->intoAbyss();
+        }
+        if (player->getX() > WORLD_WIDTH)
+        {
+            player->setX(0);
+        }
+        if (enemy->getX() > WORLD_WIDTH)
+        {
+            enemy->setX(0);
+        }
+        if (player->getX() < 0)
+        {
+            player->setX(WORLD_WIDTH);
+        }
+        if (enemy->getX() < 0)
+        {
+            enemy->setX(WORLD_WIDTH);
         }
     }   
 

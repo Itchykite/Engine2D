@@ -13,7 +13,7 @@ Camera::~Camera()
 void Camera::follow(float targetX, float targetY)
 {
     x = targetX - width / 2;
-    y = targetY / 2;
+    y = targetY / 4;
 }
 
 void Camera::clampToWorld(float worldWidth, float worldHeight)
