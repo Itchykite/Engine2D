@@ -77,14 +77,17 @@ public:
         player->update(deltaTime);
         enemy->update(player, deltaTime);
 
+        // If somehow the player or enemy goes below the ground level, call intoAbyss which will teleport entity to the ground level
         if (player->getY() > GROUND_LEVEL)
         {
-            player->intoAbyss();
+            player->intoAbyss(GROUND_LEVEL);
         }
         if (enemy->getY() > GROUND_LEVEL)
         {
-            enemy->intoAbyss();
+            enemy->intoAbyss(GROUND_LEVEL);
         }
+
+        // Going round the world
         if (player->getX() > WORLD_WIDTH)
         {
             player->setX(0);
