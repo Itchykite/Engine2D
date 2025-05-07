@@ -11,5 +11,8 @@ public:
     ~Camera();
 
     void follow(float targetX, float targetY);
-    void clampToWorld(float worldWidth, float worldHeight);
+    void clampToWorld(float worldWidth, float worldHeight, float GROUND_LEVEL, float TOP_LEVEL);
+
+    float getX() const { return x; }
+    float getY() const { return y; }
 };

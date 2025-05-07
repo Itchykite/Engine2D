@@ -53,10 +53,9 @@ public:
     void initPlatforms()
     {
         platforms.push_back(Platform(0, GROUND_LEVEL, WORLD_WIDTH, 20)); // Ground platform
-        platforms.push_back(Platform(50, 300, 200, 20)); 
-        platforms.push_back(Platform(300, 400, 200, 20));
-        platforms.push_back(Platform(350, 500, 200, 20));
-        platforms.push_back(Platform(550, 500, 200, 20));
+        platforms.push_back(Platform(0, WORLD_HEIGHT, WORLD_WIDTH, 20)); // Top platform
+        platforms.push_back(Platform(0, GROUND_LEVEL, 20, -(WORLD_HEIGHT))); // Left platform
+        platforms.push_back(Platform(WORLD_WIDTH - 20, GROUND_LEVEL, 20, -(WORLD_HEIGHT))); // Right platform
     }
 
     void handleEvent(const SDL_Event& event) override
@@ -88,22 +87,25 @@ public:
         }
 
         // Going round the world
-        if (player->getX() > WORLD_WIDTH)
+        if (player->getX() - player->getWidth() + 20 > WORLD_WIDTH)
         {
             player->setX(0);
         }
-        if (enemy->getX() > WORLD_WIDTH)
+        if (enemy->getX() - enemy->getWidth() + 20 > WORLD_WIDTH)
         {
             enemy->setX(0);
         }
-        if (player->getX() < 0)
+        if (player->getX() + player->getWidth() < 0)
         {
             player->setX(WORLD_WIDTH);
         }
-        if (enemy->getX() < 0)
+        if (enemy->getX() + enemy->getWidth() < 0)
         {
             enemy->setX(WORLD_WIDTH);
         }
+    
+        camera->follow(player->getX(), player->getY() - player->getHeight() / 2); // Camera follows player
+        camera->clampToWorld(WORLD_WIDTH, WORLD_HEIGHT, GROUND_LEVEL, WORLD_HEIGHT); // Clamp camera to world bounds
     }   
 
     void render(Renderer* renderer) override
@@ -111,7 +113,6 @@ public:
         renderer->setDrawColor(255, 255, 255, 255);
         renderer->clearScreen();
 
-        camera->follow(player->getX(), player->getY() - player->getHeight() / 2); // Camera follows player
         renderer->setCamera(camera);
 
         for (Platform& platform : platforms)
@@ -124,7 +125,11 @@ public:
         }
 
         renderer->renderText("Fps: " + std::to_string(fpsInstance.get_fps()), 10, 10, engine->font, {0, 0, 0, 255});
-
+        renderer->renderText("Player X: " + std::to_string(player->getX()), 10, 30, engine->font, {0, 0, 0, 255});
+        renderer->renderText("Player Y: " + std::to_string(player->getY()), 10, 50, engine->font, {0, 0, 0, 255});
+        renderer->renderText("Camera getX: " + std::to_string(camera->getX()), 10, 90, engine->font, {0, 0, 0, 255});
+        renderer->renderText("Camera getY: " + std::to_string(camera->getY()), 10, 110, engine->font, {0, 0, 0, 255});
+    
         renderer->setDrawColor(0, 0, 0, 255);
         player->render(renderer);
         enemy->render(renderer);
