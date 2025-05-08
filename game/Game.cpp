@@ -9,6 +9,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <random>
 
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 720;
@@ -48,7 +49,7 @@ public:
         delete camera;
 
         platforms.clear();
-    }
+    } 
 
     void initPlatforms()
     {
@@ -56,6 +57,9 @@ public:
         platforms.push_back(Platform(0, WORLD_HEIGHT, WORLD_WIDTH, 20)); // Top platform
         platforms.push_back(Platform(0, GROUND_LEVEL, 20, -(WORLD_HEIGHT))); // Left platform
         platforms.push_back(Platform(WORLD_WIDTH - 20, GROUND_LEVEL, 20, -(WORLD_HEIGHT))); // Right platform
+    
+        auto randomPlatforms = Platform::generateRandomPlatforms(WORLD_WIDTH, WORLD_HEIGHT, 200);
+        platforms.insert(platforms.end(), randomPlatforms.begin(), randomPlatforms.end());
     }
 
     void handleEvent(const SDL_Event& event) override
