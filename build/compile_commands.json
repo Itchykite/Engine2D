@@ -1,0 +1,80 @@
+[
+{
+  "directory": "/home/kacper/cpp/Engine2D/build",
+  "command": "clang++  -isystem /usr/local/include/SDL2 -std=gnu++20 -Wall -Wextra -o CMakeFiles/mygame.dir/engine/core/Engine.cpp.o -c /home/kacper/cpp/Engine2D/engine/core/Engine.cpp",
+  "file": "/home/kacper/cpp/Engine2D/engine/core/Engine.cpp",
+  "output": "CMakeFiles/mygame.dir/engine/core/Engine.cpp.o"
+},
+{
+  "directory": "/home/kacper/cpp/Engine2D/build",
+  "command": "clang++  -isystem /usr/local/include/SDL2 -std=gnu++20 -Wall -Wextra -o CMakeFiles/mygame.dir/engine/entity/Entity.cpp.o -c /home/kacper/cpp/Engine2D/engine/entity/Entity.cpp",
+  "file": "/home/kacper/cpp/Engine2D/engine/entity/Entity.cpp",
+  "output": "CMakeFiles/mygame.dir/engine/entity/Entity.cpp.o"
+},
+{
+  "directory": "/home/kacper/cpp/Engine2D/build",
+  "command": "clang++  -isystem /usr/local/include/SDL2 -std=gnu++20 -Wall -Wextra -o CMakeFiles/mygame.dir/engine/entity/enemy/Enemy.cpp.o -c /home/kacper/cpp/Engine2D/engine/entity/enemy/Enemy.cpp",
+  "file": "/home/kacper/cpp/Engine2D/engine/entity/enemy/Enemy.cpp",
+  "output": "CMakeFiles/mygame.dir/engine/entity/enemy/Enemy.cpp.o"
+},
+{
+  "directory": "/home/kacper/cpp/Engine2D/build",
+  "command": "clang++  -isystem /usr/local/include/SDL2 -std=gnu++20 -Wall -Wextra -o CMakeFiles/mygame.dir/engine/entity/enemy/movementStrategy/simpleFollowStrategy/SimpleFollowStrategy.cpp.o -c /home/kacper/cpp/Engine2D/engine/entity/enemy/movementStrategy/simpleFollowStrategy/SimpleFollowStrategy.cpp",
+  "file": "/home/kacper/cpp/Engine2D/engine/entity/enemy/movementStrategy/simpleFollowStrategy/SimpleFollowStrategy.cpp",
+  "output": "CMakeFiles/mygame.dir/engine/entity/enemy/movementStrategy/simpleFollowStrategy/SimpleFollowStrategy.cpp.o"
+},
+{
+  "directory": "/home/kacper/cpp/Engine2D/build",
+  "command": "clang++  -isystem /usr/local/include/SDL2 -std=gnu++20 -Wall -Wextra -o CMakeFiles/mygame.dir/engine/entity/npc/Npc.cpp.o -c /home/kacper/cpp/Engine2D/engine/entity/npc/Npc.cpp",
+  "file": "/home/kacper/cpp/Engine2D/engine/entity/npc/Npc.cpp",
+  "output": "CMakeFiles/mygame.dir/engine/entity/npc/Npc.cpp.o"
+},
+{
+  "directory": "/home/kacper/cpp/Engine2D/build",
+  "command": "clang++  -isystem /usr/local/include/SDL2 -std=gnu++20 -Wall -Wextra -o CMakeFiles/mygame.dir/engine/entity/player/Player.cpp.o -c /home/kacper/cpp/Engine2D/engine/entity/player/Player.cpp",
+  "file": "/home/kacper/cpp/Engine2D/engine/entity/player/Player.cpp",
+  "output": "CMakeFiles/mygame.dir/engine/entity/player/Player.cpp.o"
+},
+{
+  "directory": "/home/kacper/cpp/Engine2D/build",
+  "command": "clang++  -isystem /usr/local/include/SDL2 -std=gnu++20 -Wall -Wextra -o CMakeFiles/mygame.dir/engine/entity/player/playerMovement/simplePlayerMovement/SimplePlayerMovement.cpp.o -c /home/kacper/cpp/Engine2D/engine/entity/player/playerMovement/simplePlayerMovement/SimplePlayerMovement.cpp",
+  "file": "/home/kacper/cpp/Engine2D/engine/entity/player/playerMovement/simplePlayerMovement/SimplePlayerMovement.cpp",
+  "output": "CMakeFiles/mygame.dir/engine/entity/player/playerMovement/simplePlayerMovement/SimplePlayerMovement.cpp.o"
+},
+{
+  "directory": "/home/kacper/cpp/Engine2D/build",
+  "command": "clang++  -isystem /usr/local/include/SDL2 -std=gnu++20 -Wall -Wextra -o CMakeFiles/mygame.dir/engine/fps/Fps.cpp.o -c /home/kacper/cpp/Engine2D/engine/fps/Fps.cpp",
+  "file": "/home/kacper/cpp/Engine2D/engine/fps/Fps.cpp",
+  "output": "CMakeFiles/mygame.dir/engine/fps/Fps.cpp.o"
+},
+{
+  "directory": "/home/kacper/cpp/Engine2D/build",
+  "command": "clang++  -isystem /usr/local/include/SDL2 -std=gnu++20 -Wall -Wextra -o CMakeFiles/mygame.dir/engine/input/InputManager.cpp.o -c /home/kacper/cpp/Engine2D/engine/input/InputManager.cpp",
+  "file": "/home/kacper/cpp/Engine2D/engine/input/InputManager.cpp",
+  "output": "CMakeFiles/mygame.dir/engine/input/InputManager.cpp.o"
+},
+{
+  "directory": "/home/kacper/cpp/Engine2D/build",
+  "command": "clang++  -isystem /usr/local/include/SDL2 -std=gnu++20 -Wall -Wextra -o CMakeFiles/mygame.dir/engine/renderer/Renderer.cpp.o -c /home/kacper/cpp/Engine2D/engine/renderer/Renderer.cpp",
+  "file": "/home/kacper/cpp/Engine2D/engine/renderer/Renderer.cpp",
+  "output": "CMakeFiles/mygame.dir/engine/renderer/Renderer.cpp.o"
+},
+{
+  "directory": "/home/kacper/cpp/Engine2D/build",
+  "command": "clang++  -isystem /usr/local/include/SDL2 -std=gnu++20 -Wall -Wextra -o CMakeFiles/mygame.dir/engine/renderer/camera/Camera.cpp.o -c /home/kacper/cpp/Engine2D/engine/renderer/camera/Camera.cpp",
+  "file": "/home/kacper/cpp/Engine2D/engine/renderer/camera/Camera.cpp",
+  "output": "CMakeFiles/mygame.dir/engine/renderer/camera/Camera.cpp.o"
+},
+{
+  "directory": "/home/kacper/cpp/Engine2D/build",
+  "command": "clang++  -isystem /usr/local/include/SDL2 -std=gnu++20 -Wall -Wextra -o CMakeFiles/mygame.dir/game/Game.cpp.o -c /home/kacper/cpp/Engine2D/game/Game.cpp",
+  "file": "/home/kacper/cpp/Engine2D/game/Game.cpp",
+  "output": "CMakeFiles/mygame.dir/game/Game.cpp.o"
+},
+{
+  "directory": "/home/kacper/cpp/Engine2D/build",
+  "command": "clang++  -isystem /usr/local/include/SDL2 -std=gnu++20 -Wall -Wextra -o CMakeFiles/mygame.dir/src/main.cpp.o -c /home/kacper/cpp/Engine2D/src/main.cpp",
+  "file": "/home/kacper/cpp/Engine2D/src/main.cpp",
+  "output": "CMakeFiles/mygame.dir/src/main.cpp.o"
+}
+]
