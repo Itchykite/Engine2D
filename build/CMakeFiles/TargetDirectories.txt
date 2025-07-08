@@ -1,3 +1,0 @@
-/home/kacper/cpp/Engine2D/build/CMakeFiles/mygame.dir
-/home/kacper/cpp/Engine2D/build/CMakeFiles/edit_cache.dir
-/home/kacper/cpp/Engine2D/build/CMakeFiles/rebuild_cache.dir
